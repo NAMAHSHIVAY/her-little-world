@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little World for You 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+:root {
+  --pink: #f5b9c9;
+  --rose: #b65d7b;
+  --cream: #fffaf5;
+  --text: #573c48;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.hero {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 20px;
+  background:
+    radial-gradient(ellipse at 15% 20%, #ffe3e9 0, transparent 42%),
+    radial-gradient(ellipse at 85% 75%, #fce6d9 0, transparent 40%),
+    linear-gradient(145deg, #fff9f3, #fff0f5);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 11px;
+  color: var(--rose);
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 8vw, 82px);
+  line-height: 1.12;
+  max-width: 800px;
+  margin: 22px 0;
+}
+
+.hero h1 em {
+  color: var(--rose);
+  font-weight: 500;
+}
+
+.subtitle {
+  max-width: 470px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #886a77;
+}
+
+.sun {
+  font-size: 65px;
+  animation: sunshine 4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 15px #ffd9a8);
+}
+
+@keyframes sunshine {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.primary-btn {
+  border: none;
+  background: var(--rose);
+  color: white;
+  padding: 15px 27px;
+  border-radius: 40px;
+  margin-top: 24px;
+  box-shadow: 0 8px 22px #b65d7b30;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px #b65d7b40;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  color: #a98292;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+main section {
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.section-inner {
+  max-width: 850px;
+  margin: auto;
+}
+
+h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin: 15px 0;
+}
+
+.description {
+  color: #917481;
+  line-height: 1.8;
+}
+
+.letter-section { background: #fff; }
+
+.envelope {
+  width: min(100%, 360px);
+  min-height: 210px;
+  margin: 35px auto 15px;
+  border: 1px solid #f0d3de;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fff2f6, #ffe2ec);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  transition: transform .3s;
+}
+
+.envelope:hover { transform: translateY(-5px); }
+
+.envelope .icon { font-size: 55px; }
+
+.envelope p { line-height: 1.7; }
+
+.letter {
+  max-width: 540px;
+  margin: 25px auto 0;
+  padding: 28px;
+  background: #fffaf4;
+  border-radius: 12px;
+  line-height: 2;
+  text-align: left;
+  white-space: pre-line;
+  animation: appear .5s ease;
+}
+
+.hidden { display: none !important; }
+
+.mood-section {
+  background: linear-gradient(150deg, #fff4f7, #fffaf3);
+}
+
+.moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.mood {
+  border: 1px solid #efd8e1;
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px 20px;
+  min-width: 100px;
+  color: var(--text);
+  transition: .2s;
+}
+
+.mood span {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 7px;
+}
+
+.mood:hover, .mood.active {
+  background: #f7dce6;
+  border-color: #d89aaf;
+  transform: translateY(-3px);
+}
+
+.response {
+  max-width: 540px;
+  min-height: 100px;
+  margin: auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 16px;
+  line-height: 1.9;
+  box-shadow: 0 8px 35px #b65d7b0a;
+}
+
+.love-section { background: #fff; }
+
+.love-card {
+  margin: 30px auto;
+  padding: 35px 25px;
+  max-width: 530px;
+  background: #fff4f5;
+  border-radius: 20px;
+  border: 1px solid #f5e1e6;
+}
+
+.love-card .big-heart {
+  font-size: 45px;
+}
+
+.reason {
+  min-height: 85px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 23px;
+  line-height: 1.6;
+}
+
+.comfort-section {
+  background: #4c3a52;
+  color: #fff4f8;
+}
+
+.comfort-section .description { color: #dfcbdc; }
+.comfort-section .eyebrow { color: #f4b9cf; }
+
+.comfort-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.comfort-buttons button {
+  padding: 13px 17px;
+  border: 1px solid #a68ba6;
+  background: transparent;
+  color: white;
+  border-radius: 30px;
+  transition: .2s;
+}
+
+.comfort-buttons button:hover {
+  background: #715c76;
+}
+
+.comfort-message {
+  max-width: 540px;
+  margin: auto;
+  line-height: 1.9;
+  font-size: 17px;
+  color: #ffe1ed;
+}
+
+footer {
+  background: #fff7f4;
+  text-align: center;
+  padding: 45px 20px;
+  line-height: 2;
+  color: #957482;
+}
+
+footer strong { color: var(--rose); }
+
+.floating-heart {
+  position: fixed;
+  bottom: -40px;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatUp 4s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  15% { opacity: .8; }
+  100% { transform: translateY(-105vh) rotate(40deg); opacity: 0; }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 500px) {
+  main section { padding: 65px 18px; }
+  .mood { min-width: 42%; }
+  .hero h1 { font-size: 47px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MORNING SCREEN -->
+<header class="hero">
+  <div class="sun">☀️</div>
+  <div class="eyebrow">A little something, just for you</div>
+
+  <h1>Good morning,<br><em id="herName">my sunshine</em> 💗</h1>
+
+  <p class="subtitle">
+    A new day has arrived, and somewhere in this big world,
+    someone (ofc me 🥹) is wishing you the gentlest morning and the
+    happiest little moments ☀️.
+  </p>
+
+  <button class="primary-btn" onclick="openLetter()">
+    I have something for you 💌
+  </button>
+
+  <div class="scroll-hint">MADE WITH LOVE · JUST FOR YOU ↓</div>
+</header>
+
+<main>
+
+<!-- LOVE LETTER -->
+<section class="letter-section" id="letterSection">
+  <div class="section-inner">
+    <div class="eyebrow">A little letter from me</div>
+    <h2>Something I want you to know</h2>
+    <p class="description">
+      No special occasion needed. You deserve love on ordinary days, too.
+    </p>
+
+    <button class="envelope" onclick="toggleLetter()" id="envelope">
+      <span class="icon">💌</span>
+      <strong>You've got a letter</strong>
+      <p>Tap here to open your little surprise</p>
+    </button>
+
+    <article class="letter hidden" id="letter">
+      Good morning, my love. 💗
+
+      If I could give you one thing today, it would be the ability
+      to see yourself through my eyes along with a lot of cash & 
+      cars 😁.
+
+      Maybe then you'd understand how special you are, how much
+      your smile means, and how even the smallest things about
+      you can make my day better and how much I want us to 
+      spend time together but do not worry I will make that 
+      happen too very soon😘.
+
+      But till then you have to take care of that beautiful heart of yours, drink some
+      water, eat something nice, and remember to give yourself
+      the same kindness you give to everyone else.
+
+      Whatever today brings, I hope you find a reason to smile.
+
+      And if you don't, I hope this little corner of the internet
+      can be one.
+
+      Also, You don't have to be perfect today. You don't have to
+      have everything figured out. Just be yourself.
+
+      I'm rooting for you. Always. ❤️😘
+      
+      Yours only, with all my love.
+    </article>
+  </div>
+</section>
+
+<!-- MOOD CHECK-IN -->
+<section class="mood-section">
+  <div class="section-inner">
+    <div class="eyebrow">Let's check in with your heart</div>
+    <h2>How are you feeling today?</h2>
+    <p class="description">
+      There's no wrong answer. Choose whatever feels like you right now.
+    </p>
+
+    <div class="moods">
+      <button class="mood" onclick="chooseMood('happy', this)">
+        <span>😊</span>Happy
+      </button>
+      <button class="mood" onclick="chooseMood('sad', this)">
+        <span>🥺</span>A little sad
+      </button>
+      <button class="mood" onclick="chooseMood('tired', this)">
+        <span>😴</span>Tired
+      </button>
+      <button class="mood" onclick="chooseMood('stressed', this)">
+        <span>😣</span>Stressed
+      </button>
+      <button class="mood" onclick="chooseMood('loved', this)">
+        <span>🥰</span>Feeling loved
+      </button>
+    </div>
+
+    <div class="response" id="moodResponse" aria-live="polite">
+      Your feelings matter. Tell me how you're doing, sweetheart. 🌷
+    </div>
+  </div>
+</section>
+
+<!-- REASONS I LOVE YOU -->
+<section class="love-section">
+  <div class="section-inner">
+    <div class="eyebrow">A tiny reminder</div>
+    <h2>Reasons I love you</h2>
+    <p class="description">
+      There are so many. Here's one little reminder at a time.
+    </p>
+
+    <div class="love-card">
+      <div class="big-heart">💗</div>
+      <div class="reason" id="reason">
+        The way you make ordinary moments feel special.
+      </div>
+      <button class="primary-btn" onclick="newReason()">
+        Tell me another reason ✨
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- COMFORT CORNER -->
+<section class="comfort-section">
+  <div class="section-inner">
+    <div class="eyebrow">For whenever you need it</div>
+    <h2>A little corner just for you 🌙</h2>
+    <p class="description">
+      Whatever kind of day you're having, choose what your heart needs.
+    </p>
+
+    <div class="comfort-buttons">
+      <button onclick="comfort('hug')">I need a hug 🫂</button>
+      <button onclick="comfort('laugh')">Make me smile 🌻</button>
+      <button onclick="comfort('confidence')">I need courage 🦋</button>
+      <button onclick="comfort('love')">Tell me you love me 💌</button>
+    </div>
+
+    <div class="comfort-message" id="comfortMessage" aria-live="polite">
+      Whatever you need today, it's okay to need it. ❤️
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div style="font-size: 30px;">🌷</div>
+  <p>Created with <strong>love</strong>, just for you.</p>
+  <p>Of all the places in the world, I'm glad our paths crossed.</p>
+  <small>One little website. A million little feelings. 💗</small>
+</footer>
+
+<script>
+// ==========================================
+// PERSONALIZE YOUR WEBSITE HERE
+// ==========================================
+
+const GIRLFRIEND_NAME = "my PURVA";
+
+// Change this to her name or nickname.
+document.getElementById("herName").textContent = GIRLFRIEND_NAME;
+
+// ==========================================
+// LOVE LETTER
+// ==========================================
+
+function openLetter() {
+  document.getElementById("letterSection")
+    .scrollIntoView({ behavior: "smooth" });
+
+  setTimeout(() => {
+    const letter = document.getElementById("letter");
+    const envelope = document.getElementById("envelope");
+
+    letter.classList.remove("hidden");
+    envelope.querySelector("strong").textContent = "Your letter is open 💗";
+    envelope.querySelector("p").textContent = "A little love, written for you.";
+    envelope.querySelector(".icon").textContent = "💖";
+  }, 450);
+}
+
+function toggleLetter() {
+  const letter = document.getElementById("letter");
+  letter.classList.toggle("hidden");
+}
+
+// ==========================================
+// MOOD RESPONSES
+// ==========================================
+
+const moodMessages = {
+  happy: "That makes me happy, too! 🥰 I hope today gives you a hundred tiny reasons to smile. Enjoy these moments, sweetheart. You deserve all this happiness and more. 🌷",
+
+  sad: "Hey, sweetheart. 🫂 You don't have to pretend to be okay. It's okay to have difficult days. Take your time, breathe, and be gentle with yourself. You don't need to solve everything right now. Sending you the biggest virtual hug. ❤️ and remember you can call me anytime",
+
+  tired: "My sleepy sunshine. ☁️ You don't have to conquer the entire world today. Take things one step at a time, rest when you can, drink some water, and please take care of yourself. You matter more than your to-do list and we can push past our limits together. 💗",
+
+  stressed: "Take a slow breath with me, love. Inhale... and exhale. 🌸 You only need to deal with one thing at a time. You don't have to figure everything out this very second. Give yourself a little grace. You've got this, and it's okay to ask for help, too.",
+
+  loved: "GOOD! Because you deserve to feel loved, not just today but on the ordinary Tuesdays, the messy days, and every little moment in between. 💖 Here's another reminder: you're someone worth celebrating, exactly as you are my kuchu puchu.😘"
+};
+
+function chooseMood(mood, button) {
+  document.querySelectorAll(".mood").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  const response = document.getElementById("moodResponse");
+  response.style.animation = "none";
+  void response.offsetWidth;
+  response.style.animation = "appear .5s ease";
+  response.textContent = moodMessages[mood];
+}
+
+// ==========================================
+// REASONS I LOVE YOU
+// Replace these with REAL things about her!
+// ==========================================
+
+const reasons = [
+  "VADA SAMBAR 😋",
+  "Your smile can brighten the dullest of days. ☀️",
+  "The way you make ordinary moments feel special. 💗",
+  "The way you have your own unique perspective on the world. 🌷",
+  "Because I can be myself around you.",
+  "The sound of your laughter. It's a favorite of mine. 🎶",
+  "Because you make me want to become a better person.",
+  "The little details about you that only I might notice. 💌",
+  "Because being with you makes time feel different.",
+  "Because you deserve kindness even when you don't feel your best.",
+  "And because, out of all the people I could know, I get to know you. ❤️",
+  "Saare reasons aaj hi dekhoge 😂, baaki k kabhi or dunga ❣️"
+];
+
+let lastReason = -1;
+
+function newReason() {
+  let index;
+
+  do {
+    index = Math.floor(Math.random() * reasons.length);
+  } while (reasons.length > 1 && index === lastReason);
+
+  lastReason = index;
+
+  const element = document.getElementById("reason");
+  element.style.animation = "none";
+  void element.offsetWidth;
+  element.style.animation = "appear .5s ease";
+  element.textContent = reasons[index];
+
+  burstHearts();
+}
+
+// ==========================================
+// COMFORT CORNER
+// ==========================================
+
+const comfortMessages = {
+  hug: "Imagine the warmest, safest hug in the world. 🫂 No advice, no pressure, no expectations. Just a moment to breathe and feel held. You don't have to carry everything alone 🫂",
+
+  laugh: "Call me 🤙, I will give my brand new plan to become a billionare 😁",
+
+  confidence: "Listen, you are allowed to be a beginner. You are allowed to make mistakes, change your mind, and try again. 🌻 Your worth isn't measured by one bad day or someone else's opinion. Take your next little step. That's enough for now because consistency always bests talent hardwork or smartwork.💪",
+
+  love: "If I could be there right now, I'd hold your hand and remind you that you're important to me. 💗 You don't have to earn kindness by being productive, cheerful, or perfect. You deserve tenderness just because you're a person with a heart."
+};
+
+function comfort(type) {
+  const element = document.getElementById("comfortMessage");
+  element.style.animation = "none";
+  void element.offsetWidth;
+  element.style.animation = "appear .5s ease";
+  element.textContent = comfortMessages[type];
+
+  burstHearts();
+}
+
+// ==========================================
+// FLOATING HEART ANIMATION
+// ==========================================
+
+function burstHearts() {
+  const symbols = ["💗", "💕", "♡", "🌸", "✨"];
+
+  for (let i = 0; i < 12; i++) {
+    const heart = document.createElement("span");
+    heart.className = "floating-heart";
+    heart.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (14 + Math.random() * 18) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    document.body.appendChild(heart);
+    heart.addEventListener("animationend", () => heart.remove());
+  }
+}
+</script>
+
+</body>
+</html>
